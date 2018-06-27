@@ -4,7 +4,9 @@ module.exports = app => {
 
     app.post('/api/login', authController.login);
 
-    app.use('/*', authController.auth);
+
+    
+    // app.use('/*', authController.auth);
 
 
 }

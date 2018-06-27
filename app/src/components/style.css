@@ -30,8 +30,14 @@ body > .container {
 .footer > .container {
   padding-right: 15px;
   padding-left: 15px;
+
 }
 
 code {
   font-size: 80%;
+}
+
+
+footer > div > div > div > p {
+  margin-bottom: 0;
 }

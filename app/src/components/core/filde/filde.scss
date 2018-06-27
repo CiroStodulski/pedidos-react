@@ -1,0 +1,24 @@
+.custom-fieldset {
+
+
+    h4 {
+      color: rgba(0, 0, 0, 0.87);
+      display: flex;
+      align-items: center;
+      font-family: Roboto, sans-serif;
+      font-size: 20px;
+      font-weight: 500;
+    }
+  
+    .icon {
+      margin-right: 5px;
+    }
+  }
+  
+  .custom-fieldset .custom-fieldset-line {
+      margin-top: -10px;
+      border: 0;
+      height: 1px;
+      background: linear-gradient(to right, #2337ed 50px, #DADADA 50px)
+  }
+  

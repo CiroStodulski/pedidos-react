@@ -10,7 +10,7 @@ class Footer extends Component {
                 <div className="conteinar">
                     <div className="row">
                         <div className='col-md-12 '>
-                            <p className="text-center ">  Your Ecommerce   </p>
+                            <p className="text-center ">  © Copyright 2018-06-27 </p>
                         </div>
                     </div>
                 </div>

@@ -2,11 +2,13 @@ const express = require('express'),
     app = express(),
     consign = require('consign'),
     bodyParser = require('body-parser'),
-    helmet = require('helmet');
+    helmet = require('helmet'),
+    allowCors = require('../config/cors/cors')
 
-app.set('secret','secretWord2018')
+app.set('secret', 'secretWord2018')
 
 app.use(helmet());
+app.use(allowCors);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
