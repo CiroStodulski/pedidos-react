@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Button } from 'reactstrap';
 
 class Tab extends Component {
 
@@ -7,9 +8,12 @@ class Tab extends Component {
         this.state = {};
     }
 
+
+
     render() {
         const pedidos = this.props.pedidos;
-        console.log(pedidos)
+        // const updatePedido = this.props.updatePedido;
+        const removePedido = this.props.removePedido;
         return (
             <table className="table">
                 <thead className="thead-dark">
@@ -23,7 +27,10 @@ class Tab extends Component {
                         return (
                             <tr key={pedido._id}>
                                 <th scope="row">{pedido.codigo}</th>
-                                <th scope="row">botoes</th>
+                                <th scope="row center" >
+                                    {/* <Button color="primary" onClick={() => updatePedido(pedido)} >editar</Button>{' '} */}
+                                    <Button color="danger" onClick={() => removePedido(pedido._id)} >deletar</Button>{' '}
+                                </th>
                             </tr>
                         )
                     })}

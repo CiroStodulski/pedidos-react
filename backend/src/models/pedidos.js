@@ -1,5 +1,6 @@
 
 const mongoose = require('mongoose');
+var mongoosePaginate = require('mongoose-paginate');
 
 var schema = mongoose.Schema({
 
@@ -8,5 +9,5 @@ var schema = mongoose.Schema({
         required: true
     },
 });
-
+schema.plugin(mongoosePaginate);
 mongoose.model('pedidos', schema);

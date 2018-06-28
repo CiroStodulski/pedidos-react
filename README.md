@@ -26,3 +26,16 @@ Para rodar a aplicação
 6 na pasta backend npm run dev
 
 7 na pasta app npm start
+
+ db.pedidos.insert({codigo:"HDJR948572", user:{ "_id" : ObjectId("5b32ed2f3697dcd089e7b02f"), "name" : "ciro stodulski de azevedo", "login" : "ciro.sda@gmail.com", "password" : "123" }});
+
+
+
+
+  db.pedidos.insert({codigo:"1", user:{ "_id" : ObjectId("5b32ed2f3697dcd089e7b02f"), "name" : "ciro stodulski de azevedo", "login" : "ciro.sda@gmail.com", "password" : "123" }});
+   db.pedidos.insert({codigo:"2", user:{ "_id" : ObjectId("5b32ed2f3697dcd089e7b02f"), "name" : "ciro stodulski de azevedo", "login" : "ciro.sda@gmail.com", "password" : "123" }});
+    db.pedidos.insert({codigo:"3", user:{ "_id" : ObjectId("5b32ed2f3697dcd089e7b02f"), "name" : "ciro stodulski de azevedo", "login" : "ciro.sda@gmail.com", "password" : "123" }});
+     db.pedidos.insert({codigo:"4", user:{ "_id" : ObjectId("5b32ed2f3697dcd089e7b02f"), "name" : "ciro stodulski de azevedo", "login" : "ciro.sda@gmail.com", "password" : "123" }});
+     db.pedidos.insert({codigo:"5", user:{ "_id" : ObjectId("5b32ed2f3697dcd089e7b02f"), "name" : "ciro stodulski de azevedo", "login" : "ciro.sda@gmail.com", "password" : "123" }});
+     db.pedidos.insert({codigo:"6", user:{ "_id" : ObjectId("5b32ed2f3697dcd089e7b02f"), "name" : "ciro stodulski de azevedo", "login" : "ciro.sda@gmail.com", "password" : "123" }});
+     

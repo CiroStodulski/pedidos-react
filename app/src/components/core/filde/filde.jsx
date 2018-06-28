@@ -6,5 +6,6 @@ export default props => (
             {props.title}
         </h4>
         <hr className="custom-fieldset-line" />
+        {props.button }
     </div>
 )

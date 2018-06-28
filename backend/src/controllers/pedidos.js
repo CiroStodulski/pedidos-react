@@ -7,11 +7,31 @@ module.exports = app => {
 
 
     controller.getPedidos = (req, res) => {
-        modelPedidos.find()
-            .then(result => {
-                res.json(result);
-            })
+        modelPedidos.paginate({}, { offset: 0, limit: 4 })
+            .then(result => res.json(result.docs))
             .catch(erro => res.status(500))
+    }
+
+    controller.addPedido = (req, res) => {
+        modelPedidos.insertMany(req.body)
+            .then(result => res.json(result))
+            .catch(erro => res.status(500))
+    }
+
+    controller.getPedido = (req, res) => {
+        modelPedidos.findOne(req.params.id)
+            .then(result => res.json(result))
+            .catch(erro => res.status(500));
+    }
+
+    controller.removePedido = (req, res) => {
+        modelPedidos.remove({ _id: req.params.id })
+            .then(result => controller.getPedidos(req, res))
+            .catch(erro => res.status(500))
+    }
+
+    controller.updatePedido = (req, res) => {
+
     }
 
     return controller;
