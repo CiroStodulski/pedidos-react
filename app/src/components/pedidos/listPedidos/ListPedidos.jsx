@@ -16,7 +16,7 @@ class ListPedidos extends Component {
     }
 
     render() {
-        const {removePedido, pedidos, edit} = this.props;
+        const {removePedido, pedidos, changeEdit} = this.props;
         return (
             <table className="table">
                 <thead className="thead-dark">
@@ -31,7 +31,7 @@ class ListPedidos extends Component {
                             <tr key={pedido._id}>
                                 <th >{pedido.codigo}</th>
                                 <th className="text-center" colSpan="2">
-                                    <Button color="primary" onClick={() => changeEdit(edit)} >editar</Button>{' '}
+                                    <Button color="primary" onClick={() => changeEdit(pedido, true)} >editar</Button>{' '}
                                     <Button color="danger" onClick={() => removePedido(pedido._id)} >deletar</Button>{' '}
                                 </th>
                             </tr>

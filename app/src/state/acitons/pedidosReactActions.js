@@ -9,12 +9,20 @@ export const changePedido = event => {
     }
 }
 
-export const changeEdit = edit => {
+export const changeEdit = (pedido, edit) => {
+    pedido.edit = edit;
     return dispatch => {
-        dispatch({
-            type: 'PEDIDO_EDIT',
-            payload: edit ? false : true
-        })
+        if (edit) {
+            dispatch({
+                type: 'PEDIDO_EDIT',
+                payload: pedido
+            })
+        } else {
+            dispatch({
+                type: 'PEDIDO_EDIT',
+                payload: pedido
+            })
+        }
     }
 }
 
@@ -34,14 +42,9 @@ export const addPedido = async (novoPedido) => {
     const pedido = { codigo: novoPedido, user: { _id: "999999", name: "novo", login: "novo@novo.com", senha: "123" } }
 
     const res = await PedidoService.addPedido(pedido);
-    if (res) {
-        return dispatch => {
-            dispatch({
-                type: 'PEDIDO_ADD',
-                payload: res
-            })
-        }
-    }
+    if (res)
+        return dispatch => dispatch((loadPedido()));
+
 }
 
 export const removePedido = async (id) => {
@@ -54,4 +57,14 @@ export const removePedido = async (id) => {
             })
         }
     }
+}
+
+
+export const updatePedido = async (pedido, edit) => {
+    const res = await PedidoService.updatePedido(pedido);
+    if (res)
+        return dispatch => {
+            dispatch(loadPedido())
+            dispatch(changeEdit(pedido, edit))
+        };
 }

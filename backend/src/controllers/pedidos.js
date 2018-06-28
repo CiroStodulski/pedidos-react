@@ -14,7 +14,7 @@ module.exports = app => {
 
     controller.addPedido = (req, res) => {
         modelPedidos.insertMany(req.body)
-            .then(result => res.json(result))
+            .then(result => controller.getPedidos(req, res))
             .catch(erro => res.status(500))
     }
 

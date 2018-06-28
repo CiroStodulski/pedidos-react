@@ -13,8 +13,18 @@ class FormPedido extends Component {
         this.state = {};
     }
 
+
+    /// continuar o update
+    renderInput(){
+
+    }
+
+    renderButton(){
+        
+    }
+
     render() {
-        const {addPedido, pedido, changePedido} = this.props;
+        const { addPedido, pedido, changePedido } = this.props;
 
         return (
             <form>
@@ -23,10 +33,11 @@ class FormPedido extends Component {
                         <input id='pedido' className='form-control'
                             placeholder='Adicione um pedido'
                             onChange={changePedido}
-                            value={pedido.codigo}></input>
+                            value={pedido.codigo}>
+                        </input>
                     </div >
                     <div className="col-sm-2" >
-                        <Button color="success" onClick={() => addPedido(pedido.codigo)} >adicionar</Button>{' '}
+                        <Button color="success" onClick={() => addPedido(pedido.codigo)} >{pedido.edit ? 'atualizar' : 'adicionar'}</Button>{' '}
                     </div>
                 </div>
                 <br />
@@ -37,4 +48,4 @@ class FormPedido extends Component {
 }
 const mapStateToProps = state => ({ pedido: state.pedidos.pedido });
 const mapDispatchToProps = dispatch => bindActionCreators({ changePedido, addPedido }, dispatch)
-export default connect(mapStateToProps,mapDispatchToProps)(FormPedido);
+export default connect(mapStateToProps, mapDispatchToProps)(FormPedido);
