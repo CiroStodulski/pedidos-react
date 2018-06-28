@@ -33,4 +33,16 @@ export default class PedidoService {
     }
 
 
+    static async addPedido(pedido) {
+        let resp
+        try {
+            resp = await axios.post(`${API.dev}/pedidos`, pedido).then(res => res.data).catch(error => false);
+        } catch (error) {
+            resp = error;
+        }
+        return resp
+    }
+
+
+
 }

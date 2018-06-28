@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
+
 import { Button } from 'reactstrap';
 
-class Tab extends Component {
+class ListPedidos extends Component {
 
     constructor(props) {
         super(props)
         this.state = {};
     }
-
-
 
     render() {
         const pedidos = this.props.pedidos;
@@ -42,4 +42,6 @@ class Tab extends Component {
 
 }
 
-export default Tab;
+const mapStateToPros = state => ({ pedidos: state.pedidos.pedidos });
+
+export default connect(mapStateToPros)(ListPedidos);
