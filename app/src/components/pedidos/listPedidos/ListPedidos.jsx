@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux'
-
+import { loadPedido, removePedido, changeEdit } from '../../../state/acitons/pedidosReactActions.js'
 import { Button } from 'reactstrap';
 
 class ListPedidos extends Component {
@@ -10,25 +11,27 @@ class ListPedidos extends Component {
         this.state = {};
     }
 
+    componentWillMount() {
+        this.props.loadPedido();
+    }
+
     render() {
-        const pedidos = this.props.pedidos;
-        // const updatePedido = this.props.updatePedido;
-        const removePedido = this.props.removePedido;
+        const {removePedido, pedidos, edit} = this.props;
         return (
             <table className="table">
                 <thead className="thead-dark">
                     <tr>
-                        <th scope="col">Codigo</th>
-                        <th scope="col">Ações</th>
+                        <th >Codigo</th>
+                        <th className="text-center" width="40%">Ações</th>
                     </tr>
                 </thead>
                 <tbody>
                     {pedidos.map((pedido) => {
                         return (
                             <tr key={pedido._id}>
-                                <th scope="row">{pedido.codigo}</th>
-                                <th scope="row center" >
-                                    {/* <Button color="primary" onClick={() => updatePedido(pedido)} >editar</Button>{' '} */}
+                                <th >{pedido.codigo}</th>
+                                <th className="text-center" colSpan="2">
+                                    <Button color="primary" onClick={() => changeEdit(edit)} >editar</Button>{' '}
                                     <Button color="danger" onClick={() => removePedido(pedido._id)} >deletar</Button>{' '}
                                 </th>
                             </tr>
@@ -42,6 +45,7 @@ class ListPedidos extends Component {
 
 }
 
-const mapStateToPros = state => ({ pedidos: state.pedidos.pedidos });
+const mapStateToPros = state => ({ pedidos: state.pedidos.pedidos, pedido: state.pedidos.pedido });
+const mapDispatchToProps = dispatch => bindActionCreators({ changeEdit, loadPedido, removePedido }, dispatch)
 
-export default connect(mapStateToPros)(ListPedidos);
+export default connect(mapStateToPros, mapDispatchToProps)(ListPedidos);

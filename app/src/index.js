@@ -2,15 +2,18 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import registerServiceWorker from './registerServiceWorker';
 
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
+import promise from 'redux-promise';
+import multi from 'redux-multi';
+import thunk from 'redux-thunk';
 
-import rootPedidosReactReducer from './state/reducers/pedidosReactReducer';
+import rootPedidosReactReducer from './main/pedidosReactReducer';
 import App from './components/App';
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.css';
 
-const store = createStore(rootPedidosReactReducer)
+const store = applyMiddleware(thunk, multi, promise)(createStore)(rootPedidosReactReducer)
 
 
 ReactDOM.render(

@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux'
+import { changePedido, addPedido } from '../../../state/acitons/pedidosReactActions.js'
 
 import { Button } from 'reactstrap';
+
 
 class FormPedido extends Component {
 
@@ -11,20 +14,27 @@ class FormPedido extends Component {
     }
 
     render() {
-        const addPedido = this.props.addPedido;
+        const {addPedido, pedido, changePedido} = this.props;
 
         return (
             <form>
-                <input id='pedido' className='form-control'
-                    placeholder='Adicione um pedido'
-                    onChange={this.props.handleChangePedido}
-                    value={this.props.pedido.codigo}></input>
-                <Button color="success" onClick={() => addPedido()} >adicionar</Button>{' '}
+                <div className="row">
+                    <div className="col-sm-9">
+                        <input id='pedido' className='form-control'
+                            placeholder='Adicione um pedido'
+                            onChange={changePedido}
+                            value={pedido.codigo}></input>
+                    </div >
+                    <div className="col-sm-2" >
+                        <Button color="success" onClick={() => addPedido(pedido.codigo)} >adicionar</Button>{' '}
+                    </div>
+                </div>
+                <br />
             </form>
         );
     }
 
 }
-const mapStateToPros = state => ({ pedido: state.pedidos.pedido });
-
-export default connect(mapStateToPros)(FormPedido);
+const mapStateToProps = state => ({ pedido: state.pedidos.pedido });
+const mapDispatchToProps = dispatch => bindActionCreators({ changePedido, addPedido }, dispatch)
+export default connect(mapStateToProps,mapDispatchToProps)(FormPedido);

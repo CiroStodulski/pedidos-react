@@ -40,6 +40,7 @@ export default class PedidoService {
         } catch (error) {
             resp = error;
         }
+        console.log(resp);
         return resp
     }
 
