@@ -9,6 +9,15 @@ export const changePedido = event => {
     }
 }
 
+export const atualizarChangePedido = event => {
+    return dispatch => {
+        dispatch({
+            type: 'PEDIDO_ATUALIZAR_CHANGE',
+            payload: event.target.value
+        });
+    }
+}
+
 export const changeEdit = (pedido, edit) => {
     pedido.edit = edit;
     return dispatch => {
@@ -38,13 +47,18 @@ export const loadPedido = async () => {
     }
 }
 
-export const addPedido = async (novoPedido) => {
-    const pedido = { codigo: novoPedido, user: { _id: "999999", name: "novo", login: "novo@novo.com", senha: "123" } }
-
-    const res = await PedidoService.addPedido(pedido);
-    if (res)
-        return dispatch => dispatch((loadPedido()));
-
+export const addPedido = async (novoPedido, edit) => {
+    if (!edit) {
+        const pedido = { codigo: novoPedido.codigo, user: { _id: "999999", name: "novo", login: "novo@novo.com", senha: "123" } };
+        const res = await PedidoService.addPedido(pedido);
+        if (res)
+            return dispatch => dispatch((loadPedido()));
+    }
+    else {
+        const res = await PedidoService.updatePedido(novoPedido);
+        if (res)
+            return dispatch => dispatch((loadPedido()));
+    }
 }
 
 export const removePedido = async (id) => {

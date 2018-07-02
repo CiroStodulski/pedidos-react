@@ -9,13 +9,13 @@ module.exports = app => {
     controller.getPedidos = (req, res) => {
         modelPedidos.paginate({}, { offset: 0, limit: 4 })
             .then(result => res.json(result.docs))
-            .catch(erro => res.status(500))
+            .catch(erro => res.status(500));
     }
 
     controller.addPedido = (req, res) => {
         modelPedidos.insertMany(req.body)
             .then(result => controller.getPedidos(req, res))
-            .catch(erro => res.status(500))
+            .catch(erro => res.status(500));
     }
 
     controller.getPedido = (req, res) => {
@@ -27,11 +27,13 @@ module.exports = app => {
     controller.removePedido = (req, res) => {
         modelPedidos.remove({ _id: req.params.id })
             .then(result => controller.getPedidos(req, res))
-            .catch(erro => res.status(500))
+            .catch(erro => res.status(500));
     }
 
     controller.updatePedido = (req, res) => {
-
+        modelPedidos.updateOne({ _id: req.params.id }, req.body)
+            .then(result => controller.getPedidos(req, res))
+            .catch(erro => res.status(500));
     }
 
     return controller;

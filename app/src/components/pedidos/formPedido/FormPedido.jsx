@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux'
-import { changePedido, addPedido } from '../../../state/acitons/pedidosReactActions.js'
+import { changePedido, addPedido, atualizarChangePedido } from '../../../state/acitons/pedidosReactActions.js'
 
 import { Button } from 'reactstrap';
 
@@ -15,29 +15,39 @@ class FormPedido extends Component {
 
 
     /// continuar o update
-    renderInput(){
+    renderInput(pedido, changePedido, atualizarChangePedido) {
+        if (pedido.edit) {
+            return (
+                <input id='pedido' className='form-control'
+                    placeholder='Atualize seu pedido'
+                    onChange={atualizarChangePedido}
+                    value={pedido.codigo}>
+                </input>
+            )
+        }
+        else {
 
+            return (
+                <input id='pedido' className='form-control'
+                    placeholder='Adicione um pedido'
+                    onChange={changePedido}
+                    value={pedido.codigo}>
+                </input>
+            )
+        }
     }
-
-    renderButton(){
-        
-    }
-
+ 
     render() {
-        const { addPedido, pedido, changePedido } = this.props;
-
+        const { addPedido, pedido, changePedido, atualizarChangePedido } = this.props;
+        const renderInput = this.renderInput;
         return (
             <form>
                 <div className="row">
                     <div className="col-sm-9">
-                        <input id='pedido' className='form-control'
-                            placeholder='Adicione um pedido'
-                            onChange={changePedido}
-                            value={pedido.codigo}>
-                        </input>
+                        {renderInput(pedido, changePedido, atualizarChangePedido)}
                     </div >
                     <div className="col-sm-2" >
-                        <Button color="success" onClick={() => addPedido(pedido.codigo)} >{pedido.edit ? 'atualizar' : 'adicionar'}</Button>{' '}
+                        <Button color="success" onClick={() => addPedido(pedido, pedido.edit)} >{pedido.edit ? 'atualizar' : 'adicionar'}</Button>{' '}
                     </div>
                 </div>
                 <br />
@@ -47,5 +57,5 @@ class FormPedido extends Component {
 
 }
 const mapStateToProps = state => ({ pedido: state.pedidos.pedido });
-const mapDispatchToProps = dispatch => bindActionCreators({ changePedido, addPedido }, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({ changePedido, addPedido, atualizarChangePedido }, dispatch)
 export default connect(mapStateToProps, mapDispatchToProps)(FormPedido);
