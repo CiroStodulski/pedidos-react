@@ -43,6 +43,16 @@ export default class PedidoService {
         return resp
     }
 
+    static async findPedido(pedido) {
+        let resp
+        try {
+            resp = await axios.post(`${API.dev}/pedidos/pesquisa`, { codigo: pedido.codigo }).then(res => res.data).catch(error => false);
+        } catch (error) {
+            resp = error;
+        }
+        return resp
+    }
+
 
 
 }

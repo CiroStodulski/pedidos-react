@@ -8,11 +8,6 @@ class Header extends Component {
         return (
             <div className="container">
                 <div className="row">
-                    <div className="col-md-12 header">
-                        
-                    </div>
-                </div>
-                <div className="row">
                         <NavComponent />
                 </div>
             </div>

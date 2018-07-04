@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux'
-import { changePedido, addPedido, atualizarChangePedido } from '../../../state/acitons/pedidosReactActions.js'
+import { changePedido, addPedido, atualizarChangePedido , findPedido} from '../../../state/acitons/pedidosReactActions.js'
 
 import { Button } from 'reactstrap';
 
@@ -12,7 +12,6 @@ class FormPedido extends Component {
         super(props)
         this.state = {};
     }
-
 
     /// continuar o update
     renderInput(pedido, changePedido, atualizarChangePedido) {
@@ -26,7 +25,6 @@ class FormPedido extends Component {
             )
         }
         else {
-
             return (
                 <input id='pedido' className='form-control'
                     placeholder='Adicione um pedido'
@@ -36,16 +34,19 @@ class FormPedido extends Component {
             )
         }
     }
- 
+
     render() {
-        const { addPedido, pedido, changePedido, atualizarChangePedido } = this.props;
+        const { addPedido, pedido, changePedido, atualizarChangePedido , findPedido} = this.props;
         const renderInput = this.renderInput;
         return (
             <form>
                 <div className="row">
-                    <div className="col-sm-9">
+                    <div className="col-sm-7">
                         {renderInput(pedido, changePedido, atualizarChangePedido)}
                     </div >
+                    <div className="col-sm-2" >
+                        <Button color="info" onClick={() => findPedido(pedido)} >{'Pesquisa'}</Button>{' '}
+                    </div>
                     <div className="col-sm-2" >
                         <Button color="success" onClick={() => addPedido(pedido, pedido.edit)} >{pedido.edit ? 'atualizar' : 'adicionar'}</Button>{' '}
                     </div>
@@ -57,5 +58,5 @@ class FormPedido extends Component {
 
 }
 const mapStateToProps = state => ({ pedido: state.pedidos.pedido });
-const mapDispatchToProps = dispatch => bindActionCreators({ changePedido, addPedido, atualizarChangePedido }, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({ changePedido, addPedido, atualizarChangePedido , findPedido }, dispatch)
 export default connect(mapStateToProps, mapDispatchToProps)(FormPedido);

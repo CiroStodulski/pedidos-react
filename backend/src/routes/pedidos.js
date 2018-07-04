@@ -11,4 +11,7 @@ module.exports = app => {
         .delete(controllerPedidos.removePedido)
         .put(controllerPedidos.updatePedido);
 
+
+    app.post('/api/pedidos/pesquisa', controllerPedidos.findPedido);
+
 }

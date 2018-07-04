@@ -14,7 +14,7 @@ class ListPedidos extends Component {
     componentWillMount() {
         this.props.loadPedido();
     }
-
+    
     render() {
         const {removePedido, pedidos, changeEdit} = this.props;
         return (
@@ -49,3 +49,5 @@ const mapStateToPros = state => ({ pedidos: state.pedidos.pedidos, pedido: state
 const mapDispatchToProps = dispatch => bindActionCreators({ changeEdit, loadPedido, removePedido }, dispatch)
 
 export default connect(mapStateToPros, mapDispatchToProps)(ListPedidos);
+
+

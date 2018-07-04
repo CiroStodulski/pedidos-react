@@ -36,6 +36,16 @@ module.exports = app => {
             .catch(erro => res.status(500));
     }
 
+    controller.findPedido = (req, res) => {
+        const codigo = req.body.codigo;
+        modelPedidos.find({ codigo: new RegExp(codigo, "i") })
+            .then(result => {
+                res.json(result);
+            })
+            .catch(erro => console.log(erro));
+    }
+
+
     return controller;
 
 }
