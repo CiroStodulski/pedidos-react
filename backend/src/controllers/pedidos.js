@@ -5,7 +5,6 @@ module.exports = app => {
     let controller = {};
     const modelPedidos = mongoose.model('pedidos');
 
-
     controller.getPedidos = (req, res) => {
         modelPedidos.paginate({}, { offset: 0, limit: 4 })
             .then(result => res.json(result.docs))
@@ -38,7 +37,7 @@ module.exports = app => {
 
     controller.findPedido = (req, res) => {
         const codigo = req.body.codigo;
-        modelPedidos.find({ codigo: new RegExp(codigo, "i") })
+        modelPedidos.find({ codigo: new    RegExp(codigo, "i") })
             .then(result => {
                 res.json(result);
             })

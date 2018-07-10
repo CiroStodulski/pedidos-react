@@ -1,20 +1,27 @@
 const userKey = '_pedidos-react_user'
 const INITIAL_STATE = {
     user: JSON.parse(localStorage.getItem(userKey)),
-    validToken: false
+    validToken: false,
+    login: { login: '', password: '' }
 }
 export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
-        case 'TOKEN_VALIDATED':
-            if (action.payload) {
-                return { ...state, validToken: true }
-            } else {
-                localStorage.removeItem(userKey)
-                return { ...state, validToken: false, user: null }
-            }
-        case 'USER_FETCHED':
-            localStorage.setItem(userKey, JSON.stringify(action.payload))
-            return { ...state, user: action.payload, validToken: true }
+        case 'LOGIN_CHANGE':
+            let loginL = Object.assign({}, state.login, { login: action.payload });
+            return { ...state, login: loginL }
+        case 'PASSWORD_CHANGE':
+            let loginC = Object.assign({}, state.login, { password: action.payload });
+            return { ...state, login: loginC }
+        // case 'TOKEN_VALIDATED':
+        //     if (action.payload) {
+        //         return { ...state, validToken: true }
+        //     } else {
+        //         localStorage.removeItem(userKey)
+        //         return { ...state, validToken: false, user: null }
+        //     }
+        // case 'USER_FETCHED':
+        //     localStorage.setItem(userKey, JSON.stringify(action.payload))
+        //     return { ...state, user: action.payload, validToken: true }
         default:
             return state
     }

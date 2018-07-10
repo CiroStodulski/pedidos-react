@@ -20,7 +20,6 @@ export const atualizarChangePedido = event => {
 
 export const findPedido = async (pedido) => {
     const res = await PedidoService.findPedido(pedido);
-    console.log(res)
     return dispatch => {
         dispatch({
             type: 'PEDIDO_LOAD',

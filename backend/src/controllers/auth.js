@@ -9,14 +9,20 @@ module.exports = app => {
 
         let user = req.body;
 
-        modelUser.findOne({ login: user.login, password: user.password })
+        modelUser.findOne({ login: user.login })
             .then(result => {
-                let token = jwt.sign({ date: new Date() }, app.get('secret'), { expiresIn: 86400 })
-                res.set('x-access-token', token); // adicionando token no cabeçalho de resposta
-                res.send(token)
-                res.end();
+                console.log(result)
+                if (result) {
+                    let token = jwt.sign({ date: new Date() }, app.get('secret'), { expiresIn: 86400 })
+                    res.set('x-access-token', token); // adicionando token no cabeçalho de resposta
+                    res.status(200).json({ auth: true })
+                } else {
+                    res.status(400).json({ auth: false })
+                }
             })
-            .catch(erro => res.status(401));
+            .catch(erro => {
+                res.status(401).json({ auth: false })
+            });
 
     }
 
