@@ -7,7 +7,6 @@ import Login from '../components/login/Login';
 export default props => (
     <Router history={hashHistory}>
         <Route path="/" component={Home} />
-        <Route path="/login" component={Login} />
         <Route path="/pedidos" component={Pedidos} />
         <Route path="/user" component={User} />
         <Redirect from="*" to="/" />

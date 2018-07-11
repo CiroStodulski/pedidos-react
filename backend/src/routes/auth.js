@@ -6,7 +6,7 @@ module.exports = app => {
 
 
     
-    // app.use('/*', authController.auth);
+     app.use('/*', authController.auth);
 
 
 }

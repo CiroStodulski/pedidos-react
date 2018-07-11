@@ -9,11 +9,12 @@ module.exports = app => {
 
         let user = req.body;
         modelUser.findOne({ login: user.login, password: user.password })
+
             .then(result => {
                 if (result) {
                     let token = jwt.sign({ date: new Date() }, app.get('secret'), { expiresIn: 86400 });
                     res.set('x-access-token', token); // adicionando token no cabeçalho de resposta
-                    res.status(200).json({ auth: true });
+                    res.status(200).json({ auth: true, token: token });
                 } else {
                     res.status(400).json({ auth: false });
                 }
@@ -25,10 +26,12 @@ module.exports = app => {
     }
 
     controller.auth = (req, res, next) => {
+        console.log(req.headers)
         const token = req.headers['x-access-token']; // busca o token no header da requisição
         if (token) {
             jwt.verify(token, app.get('secret'), (err, decoded) => {
                 if (err) {
+                    console.log('teste')
                     return res.sendStatus(401);
                 } else {
                     // guardou o valor decodificado do token na requisição. No caso, o login do usuário.
@@ -39,6 +42,7 @@ module.exports = app => {
         } else {
             return res.sendStatus(401);
         }
+        next();
     }
 
 
