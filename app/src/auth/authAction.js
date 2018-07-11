@@ -21,7 +21,7 @@ export const changePassword = (event) => {
 
 export const login = async (event) => {
     event.preventDefault();
-    let body = { login : event.target.email.value, password: event.target.email.password }
+    let body = { login : event.target.email.value, password: event.target.password.value }
     const res = await AuthService.login(body);
     if (res.auth) {
         console.log(res.auth, 'autenticado');

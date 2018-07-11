@@ -2,7 +2,9 @@ import axios from 'axios';
 import API from './api';
 
 export default class AuthService {
+
     static async login(dados) {
+        console.log(dados)
         let resp;
         try {
             resp = await axios.post(`${API.dev}/login`, dados).then(res => res.data);
