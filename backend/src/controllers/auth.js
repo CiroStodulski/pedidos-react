@@ -11,6 +11,7 @@ module.exports = app => {
         modelUser.findOne({ login: user.login, password: user.password })
 
             .then(result => {
+                console.log(result)
                 if (result) {
                     let token = jwt.sign({ date: new Date() }, app.get('secret'), { expiresIn: 86400 });
                     res.set('x-access-token', token); // adicionando token no cabeçalho de resposta
@@ -42,7 +43,6 @@ module.exports = app => {
         } else {
             return res.sendStatus(401);
         }
-        next();
     }
 
 
