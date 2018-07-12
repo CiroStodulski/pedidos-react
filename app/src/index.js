@@ -12,7 +12,7 @@ import rootPedidosReactReducer from './main/pedidosReactReducer';
 import App from './components/App';
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.css';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import Login from './components/login/Login';
 
 import createHistory from "history/createBrowserHistory";

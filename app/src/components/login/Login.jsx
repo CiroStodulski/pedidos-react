@@ -15,7 +15,7 @@ class Login extends Component {
 
     render() {
         
-        const { changeLogin, changePassword, auth , login, history} = this.props;
+        const { changeLogin, changePassword, auth , login} = this.props;
         return (
             <Container>
                 <Fild title="Login" />
