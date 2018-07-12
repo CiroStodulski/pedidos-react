@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { push } from 'react-router-redux'
 
 axios.interceptors.request.use(function (config) {
     if (localStorage.getItem("token")) {
@@ -8,6 +7,7 @@ axios.interceptors.request.use(function (config) {
     return config;
 }, function (error) {
     // Do something with request error
+    
     return Promise.reject(error);
 });
 
@@ -21,9 +21,11 @@ axios.interceptors.response.use(function (response) {
     return response;
 }, function (error) {
     // Do something with response error
-    if (error != null && error.status === 401) {
+    console.log(error)
+    if (error != null) {
         localStorage.clear();
-        push('/login')
+        //window.location.replace("/login");
+        
     }
     return Promise.reject(error);
 });

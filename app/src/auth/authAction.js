@@ -24,6 +24,7 @@ export const login = async (event) => {
     event.preventDefault();
     let body = { login: event.target.email.value, password: event.target.password.value }
     const res = await AuthService.login(body);
+    console.log(res)
     if (res.auth) {
         localStorage.setItem("token", res.token);
         return dispatch => {
