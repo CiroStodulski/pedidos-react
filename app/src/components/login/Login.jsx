@@ -4,13 +4,15 @@ import { connect } from 'react-redux'
 import Fild from '../core/filde/filde'
 import Container from '../core/container/container'
 
-import { changeLogin, changePassword, login } from '../../auth/authAction'
+import { changeLogin, changePassword, login , msgAtencao } from '../../auth/authAction'
 
 import './login.css';
 
 class Login extends Component {
 
-  
+    componentDidMount(){
+        this.props.msgAtencao(this.props.token)
+    }
 
     render() {
         
@@ -35,6 +37,6 @@ class Login extends Component {
     }
 
 }
-const mapStateToProps = state => ({ auth: state.auth.login });
-const mapDispatchToProps = dispatch => bindActionCreators({ changeLogin, changePassword, login }, dispatch)
+const mapStateToProps = state => ({ auth: state.auth.login , token : state.auth.validToken});
+const mapDispatchToProps = dispatch => bindActionCreators({ changeLogin, changePassword, login, msgAtencao }, dispatch)
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

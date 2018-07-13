@@ -1,5 +1,6 @@
 import AuthService from '../services/AuthService';
 import { push } from 'react-router-redux'
+import { toastr } from "react-redux-toastr";
 
 
 export const changeLogin = (event) => {
@@ -30,6 +31,8 @@ export const login = async (event) => {
         return dispatch => {
             dispatch({ type: 'TOKEN_VALIDATED', payload: res.auth });
             dispatch(push('/#/home'));
+            toastr.success("Sucesso", "Bem vindo!")
+
         }
     }
     else {
@@ -64,6 +67,7 @@ export const validaToken = async (isToken) => {
                 }
             } else {
                 return dispatch => {
+                    dispatch(push('/login'));
                     dispatch({ type: 'TOKEN_VALIDATED', payload: false })
                 }
             }
@@ -72,9 +76,24 @@ export const validaToken = async (isToken) => {
         else {
             // mudar o stato para parecere usuario ou senha invalido
             return dispatch => {
-                dispatch(push('/login'));
                 dispatch({ type: 'TOKEN_VALIDATED', payload: false })
+                dispatch(push('/login'));
             }
         }
     }
+}
+
+export const msgAtencao = (logado) => {
+    if (logado) {
+        return dispatch => {
+            dispatch({ type: 'TOKEN_VALIDATED', payload: true });   
+        }
+    } else {
+        return dispatch => {
+            console.log(logado);
+            toastr.success("Atenção", "Você precisa estár autenticado!")
+            dispatch({ type: 'TOKEN_VALIDATED', payload: false })
+        }
+    }
+
 }

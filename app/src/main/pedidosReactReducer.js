@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import pedidosReducers from './../state/reducers/pedidosReducers'
 import AuthReducer from '../auth/authReducer';
 import { routerReducer } from "react-router-redux";
+import { reducer as toastrReducer } from 'react-redux-toastr'
 
 const rootPedidosReactReducer = combineReducers({
     user: () => ({
@@ -11,7 +12,8 @@ const rootPedidosReactReducer = combineReducers({
     }),
     pedidos: pedidosReducers,
     auth: AuthReducer,
-    router: routerReducer
+    router: routerReducer,
+    toastr : toastrReducer
 })
 
 export default rootPedidosReactReducer;

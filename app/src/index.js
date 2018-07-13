@@ -14,6 +14,7 @@ import './index.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Route, Switch } from 'react-router-dom';
 import Login from './components/login/Login';
+import Messages from './components/core/msg/messages'
 
 import createHistory from "history/createBrowserHistory";
 
@@ -38,6 +39,7 @@ ReactDOM.render(
                     <Route exact path="/login" component={Login} />
                     <Route component={Login} />
                 </Switch>
+                <Messages />
             </div>
         </ConnectedRouter>
     </Provider>
