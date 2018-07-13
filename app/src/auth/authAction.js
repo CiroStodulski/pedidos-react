@@ -8,7 +8,7 @@ export const changeLogin = (event) => {
         dispatch({
             type: 'LOGIN_CHANGE',
             payload: event.target.value
-        })
+        });
     }
 }
 
@@ -17,7 +17,7 @@ export const changePassword = (event) => {
         dispatch({
             type: 'PASSWORD_CHANGE',
             payload: event.target.value
-        })
+        });
     }
 }
 
@@ -31,7 +31,7 @@ export const login = async (event) => {
         return dispatch => {
             dispatch({ type: 'TOKEN_VALIDATED', payload: res.auth });
             dispatch(push('/#/home'));
-            toastr.success("Sucesso", "Bem vindo!")
+            toastr.success("Sucesso", "Bem vindo!");
 
         }
     }
@@ -46,7 +46,7 @@ export const login = async (event) => {
 export const logoff = () => {
     return dispatch => {
         dispatch(push('/login'));
-        dispatch({ type: 'TOKEN_VALIDATED', payload: false })
+        dispatch({ type: 'TOKEN_VALIDATED', payload: false });
     }
 }
 
@@ -54,7 +54,7 @@ export const logoff = () => {
 export const validaToken = async (isToken) => {
     if (isToken) {
         return dispatch => {
-            dispatch({ type: 'TOKEN_VALIDATED', payload: true })
+            dispatch({ type: 'TOKEN_VALIDATED', payload: true });
         }
     }
     else {
@@ -63,12 +63,12 @@ export const validaToken = async (isToken) => {
             const res = await AuthService.validaToken();
             if (res.auth) {
                 return dispatch => {
-                    dispatch({ type: 'TOKEN_VALIDATED', payload: true })
+                    dispatch({ type: 'TOKEN_VALIDATED', payload: true });
                 }
             } else {
                 return dispatch => {
                     dispatch(push('/login'));
-                    dispatch({ type: 'TOKEN_VALIDATED', payload: false })
+                    dispatch({ type: 'TOKEN_VALIDATED', payload: false });
                 }
             }
 
@@ -76,7 +76,7 @@ export const validaToken = async (isToken) => {
         else {
             // mudar o stato para parecere usuario ou senha invalido
             return dispatch => {
-                dispatch({ type: 'TOKEN_VALIDATED', payload: false })
+                dispatch({ type: 'TOKEN_VALIDATED', payload: false });
                 dispatch(push('/login'));
             }
         }
@@ -90,9 +90,8 @@ export const msgAtencao = (logado) => {
         }
     } else {
         return dispatch => {
-            console.log(logado);
-            toastr.success("Atenção", "Você precisa estár autenticado!")
-            dispatch({ type: 'TOKEN_VALIDATED', payload: false })
+            //toastr.warning("Atenção", "Você precisa estár autenticado!");
+            dispatch({ type: 'TOKEN_VALIDATED', payload: false });
         }
     }
 
