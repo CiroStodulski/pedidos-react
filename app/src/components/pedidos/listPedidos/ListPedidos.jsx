@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 import { loadPedido, removePedido, changeEdit } from '../../../state/acitons/pedidosReactActions.js'
 import { Button } from 'reactstrap';
 
+import './list-pedidos.css'
+
 class ListPedidos extends Component {
 
     constructor(props) {
@@ -31,8 +33,8 @@ class ListPedidos extends Component {
                             <tr key={pedido._id}>
                                 <th >{pedido.codigo}</th>
                                 <th className="text-center" colSpan="2">
-                                    <Button color="primary" onClick={() => changeEdit(pedido, true)} >editar</Button>{' '}
-                                    <Button color="danger" onClick={() => removePedido(pedido._id)} >deletar</Button>{' '}
+                                    <Button color="primary btn-d" onClick={() => changeEdit(pedido, true)} >editar</Button>{' '}
+                                    <Button color="danger btn-d" onClick={() => removePedido(pedido._id)} >deletar</Button>{' '}
                                 </th>
                             </tr>
                         )
