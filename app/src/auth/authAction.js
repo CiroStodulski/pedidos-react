@@ -40,6 +40,13 @@ export const login = async (event) => {
     }
 }
 
+export const logoff = () => {
+    return dispatch => {
+        dispatch(push('/login'));
+        dispatch({ type: 'TOKEN_VALIDATED', payload: false })
+    }
+}
+
 
 export const validaToken = async (isToken) => {
     if (isToken) {
