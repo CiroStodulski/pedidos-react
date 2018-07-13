@@ -10,8 +10,7 @@ import './login.css';
 
 class Login extends Component {
 
-    componentWillMount(){
-    }
+  
 
     render() {
         

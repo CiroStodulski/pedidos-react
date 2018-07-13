@@ -3,11 +3,14 @@ import Fild from '../core/filde/filde'
 import ListPedidos from './listPedidos/ListPedidos'
 import NovoPedido from './formPedido/FormPedido';
 
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import { validaToken } from '../../auth/authAction'
+
 class Pedidos extends Component {
 
-    constructor(props) {
-        super(props)
-        this.state = {};
+    componentWillMount() {
+        this.props.validaToken(this.props.token);
     }
 
     render() {
@@ -22,4 +25,6 @@ class Pedidos extends Component {
 
 }
 
-export default Pedidos;
+const mapStateToProps = state => ({ token: state.auth.validToken });
+const mapDispatchToProps = dispatch => bindActionCreators({validaToken}, dispatch);
+export default connect(mapStateToProps,mapDispatchToProps)(Pedidos);

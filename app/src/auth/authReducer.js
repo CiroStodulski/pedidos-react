@@ -6,6 +6,7 @@ const INITIAL_STATE = {
 }
 export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
+
         case 'LOGIN_CHANGE':
             let loginL = Object.assign({}, state.login, { login: action.payload });
             return { ...state, login: loginL }
@@ -14,7 +15,7 @@ export default (state = INITIAL_STATE, action) => {
             return { ...state, login: loginC }
         case 'TOKEN_VALIDATED':
             if (action.payload) {
-                return { ...state, validToken: true }
+                return { ...state, validToken: action.payload }
             } else {
                 localStorage.removeItem(userKey)
                 return { ...state, validToken: false, user: null }

@@ -13,7 +13,6 @@ axios.interceptors.request.use(function (config) {
 
 // Add a response interceptor
 axios.interceptors.response.use(function (response) {
-    console.log(response)
     let token = response.config.headers['x-access-token'];
     if (token != null) {
         localStorage.setItem("token", token);
@@ -21,11 +20,9 @@ axios.interceptors.response.use(function (response) {
     return response;
 }, function (error) {
     // Do something with response error
-    console.log(error)
     if (error != null) {
         localStorage.clear();
-        //window.location.replace("/login");
-        
+        window.location.replace("/login");
     }
     return Promise.reject(error);
 });

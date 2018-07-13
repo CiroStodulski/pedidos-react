@@ -6,15 +6,17 @@ export default class AuthService {
     static async login(dados) {
         let resp;
         try {
-               resp = await axios.post(`${API.dev}/login`, dados).then(res => res.data);
-            // resp = await fetch(`${API.dev}/login`,
-            //     {
-            //         headers: {
-            //             'Content-Type': 'application/json'
-            //         },
-            //         method: 'POST',
-            //         body: JSON.stringify(dados)
-            //     });
+            resp = await axios.post(`${API.dev}/login`, dados).then(res => res.data);
+        } catch (error) {
+            resp = error;
+        }
+        return resp
+    }
+
+    static async validaToken() {
+        let resp;
+        try {
+            resp = await axios.get(`${API.dev}/validaToken`).then(res => res.data);
         } catch (error) {
             resp = error;
         }

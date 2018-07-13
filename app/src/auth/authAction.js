@@ -28,17 +28,46 @@ export const login = async (event) => {
     if (res.auth) {
         localStorage.setItem("token", res.token);
         return dispatch => {
+            dispatch({ type: 'TOKEN_VALIDATED', payload: res.auth });
             dispatch(push('/#/home'));
         }
     }
     else {
-        // mudar o stato para parecere usuario ou senha invalido
-        console.log(res.auth, 'não autenticado');
+        return dispatch => {
+            dispatch(push('/login'));
+            dispatch({ type: 'TOKEN_VALIDATED', payload: false });
+        }
     }
-    // return dispatch => {
-    //     dispatch({
-    //         type: 'PASSWORD_CHANGE',
-    //         payload: event.target.value
-    //     })
-    // }
+}
+
+
+export const validaToken = async (isToken) => {
+    if (isToken) {
+        return dispatch => {
+            dispatch({ type: 'TOKEN_VALIDATED', payload: true })
+        }
+    }
+    else {
+        if (localStorage.getItem("token")) {
+            // se existe tem que validar o token
+            const res = await AuthService.validaToken();
+            if (res.auth) {
+                return dispatch => {
+                    dispatch({ type: 'TOKEN_VALIDATED', payload: true })
+                }
+            } else {
+                return dispatch => {
+                    dispatch({ type: 'TOKEN_VALIDATED', payload: false })
+                }
+            }
+
+        }
+        else {
+            // mudar o stato para parecere usuario ou senha invalido
+            return dispatch => {
+                dispatch(push('/login'));
+                dispatch({ type: 'TOKEN_VALIDATED', payload: false })
+            }
+        }
+    }
 }
