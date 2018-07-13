@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux'
-import { changePedido, addPedido, atualizarChangePedido , findPedido} from '../../../state/acitons/pedidosReactActions.js'
+import { changePedido, addPedido, atualizarChangePedido, findPedido } from '../../../state/acitons/pedidosReactActions.js'
 
 import { Button } from 'reactstrap';
 
+import './form-pedido.css'
 
 class FormPedido extends Component {
 
@@ -36,19 +37,23 @@ class FormPedido extends Component {
     }
 
     render() {
-        const { addPedido, pedido, changePedido, atualizarChangePedido , findPedido} = this.props;
+        const { addPedido, pedido, changePedido, atualizarChangePedido, findPedido } = this.props;
         const renderInput = this.renderInput;
         return (
             <form>
                 <div className="row">
-                    <div className="col-sm-7">
+                    <div className="col-sm-8 col-8">
                         {renderInput(pedido, changePedido, atualizarChangePedido)}
                     </div >
-                    <div className="col-sm-2" >
-                        <Button color="info" onClick={() => findPedido(pedido)} >{'Pesquisa'}</Button>{' '}
-                    </div>
-                    <div className="col-sm-2" >
-                        <Button color="success" onClick={() => addPedido(pedido, pedido.edit)} >{pedido.edit ? 'atualizar' : 'adicionar'}</Button>{' '}
+                    <div className="col-sm-3 col-1" >
+                        <div className="row btns">
+                            <div className="col-md-6 col-sm-12 col-12" >
+                                <Button color="info btn-p" onClick={() => findPedido(pedido)} >{'Pesquisa'}</Button>{' '}
+                            </div>
+                            <div className="col-md-6  col-sm-12 col-12" >
+                                <Button color="success btn-a" onClick={() => addPedido(pedido, pedido.edit)} >{pedido.edit ? 'atualizar' : 'adicionar'}</Button>{' '}
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <br />
@@ -58,5 +63,5 @@ class FormPedido extends Component {
 
 }
 const mapStateToProps = state => ({ pedido: state.pedidos.pedido });
-const mapDispatchToProps = dispatch => bindActionCreators({ changePedido, addPedido, atualizarChangePedido , findPedido }, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({ changePedido, addPedido, atualizarChangePedido, findPedido }, dispatch)
 export default connect(mapStateToProps, mapDispatchToProps)(FormPedido);

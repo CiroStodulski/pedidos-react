@@ -1,0 +1,99 @@
+
+
+@media (min-width: 1281px) {
+
+  }
+  
+  
+  @media (min-width: 1025px) and (max-width: 1280px) {
+    .btn-p{
+        width: 90px;
+        margin-right: 15px
+    } 
+    
+    .btn-a{
+        width: 90px;
+        margin-left: 15px
+    }
+  }
+  
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+    .btn-p{
+        margin-right: 25px
+        
+    } 
+    
+    .btn-a{
+        margin-left: 40px
+    }
+    input#pedido {
+        width: 250px;
+    }
+
+    .btns{
+        position: relative;
+        right:  55px;
+    }
+  
+  }
+  
+
+  
+  @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+    .btn-p{
+        margin-right: 25px
+        
+    } 
+    
+    .btn-a{
+        margin-left: 40px
+    }
+    input#pedido {
+        width: 250px;
+    }
+
+    .btns{
+        position: relative;
+        right:  55px;
+    }
+    
+  }
+  
+
+  
+  @media (min-width: 481px) and (max-width: 767px) {
+
+    .btn-p{
+        width: 100px;
+        margin: 1px
+    } 
+    
+    .btn-a{
+        width: 100px;
+        margin: 1px
+    }
+
+    input#pedido {
+        margin-top: 20px;
+    }
+    
+  }
+  
+
+  
+  @media (min-width: 320px) and (max-width: 480px) {
+    .btn-p{
+        width: 100px;
+        margin: 1px
+    } 
+
+    .btn-a{
+        width: 100px;
+        margin: 1px
+    }
+
+    input#pedido {
+        margin-top: 20px;
+    }
+  }
