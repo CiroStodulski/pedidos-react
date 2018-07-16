@@ -2,6 +2,7 @@ const userKey = 'token'
 const INITIAL_STATE = {
     user: localStorage.getItem(userKey),
     validToken: false,
+    tentativa: false,
     login: { login: '', password: '' }
 }
 export default (state = INITIAL_STATE, action) => {
@@ -23,6 +24,8 @@ export default (state = INITIAL_STATE, action) => {
         case 'USER_FETCHED':
             localStorage.setItem(userKey, action.payload)
             return { ...state, user: action.payload, validToken: true }
+        case 'TOKEN_TENTATIVA':
+            return { ...state, tentativa: action.payload }
         default:
             return state
     }

@@ -10,9 +10,10 @@ import './login.css';
 
 class Login extends Component {
 
-    componentDidMount(){
-        this.props.msgAtencao(this.props.token)
-    }
+    // componentDidMount(){
+    //     this.props.msgAtencao(this.props.tentativa)
+    //     console.log(this.props.tentativa)
+    // }
 
     render() {
         
@@ -37,6 +38,6 @@ class Login extends Component {
     }
 
 }
-const mapStateToProps = state => ({ auth: state.auth.login , token : state.auth.validToken});
+const mapStateToProps = state => ({ auth: state.auth.login , tentativa : state.auth.tentativa});
 const mapDispatchToProps = dispatch => bindActionCreators({ changeLogin, changePassword, login, msgAtencao }, dispatch)
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

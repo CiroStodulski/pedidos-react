@@ -1,5 +1,4 @@
 import axios from 'axios';
-
 axios.interceptors.request.use(function (config) {
     if (localStorage.getItem("token")) {
         config.headers['x-access-token'] = localStorage.getItem("token");
@@ -22,7 +21,7 @@ axios.interceptors.response.use(function (response) {
     // Do something with response error
     if (error != null) {
         localStorage.clear();
-        window.location.replace("/login");
+       // 
     }
     return Promise.reject(error);
 });

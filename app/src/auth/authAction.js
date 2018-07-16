@@ -25,19 +25,17 @@ export const login = async (event) => {
     event.preventDefault();
     let body = { login: event.target.email.value, password: event.target.password.value }
     const res = await AuthService.login(body);
-    console.log(res)
     if (res.auth) {
         localStorage.setItem("token", res.token);
         return dispatch => {
             dispatch({ type: 'TOKEN_VALIDATED', payload: res.auth });
             dispatch(push('/#/home'));
             toastr.success("Sucesso", "Bem vindo!");
-
         }
     }
     else {
         return dispatch => {
-            dispatch(push('/login'));
+            toastr.error("Atenção", "usuário ou senha invalidos!");
             dispatch({ type: 'TOKEN_VALIDATED', payload: false });
         }
     }
@@ -49,7 +47,6 @@ export const logoff = () => {
         dispatch({ type: 'TOKEN_VALIDATED', payload: false });
     }
 }
-
 
 export const validaToken = async (isToken) => {
     if (isToken) {
@@ -67,6 +64,7 @@ export const validaToken = async (isToken) => {
                 }
             } else {
                 return dispatch => {
+                    toastr.warning("Atenção", "Necessária autenticação!");
                     dispatch(push('/login'));
                     dispatch({ type: 'TOKEN_VALIDATED', payload: false });
                 }
@@ -76,6 +74,7 @@ export const validaToken = async (isToken) => {
         else {
             // mudar o stato para parecere usuario ou senha invalido
             return dispatch => {
+                toastr.warning("Atenção", "Necessária autenticação!");
                 dispatch({ type: 'TOKEN_VALIDATED', payload: false });
                 dispatch(push('/login'));
             }
@@ -90,8 +89,8 @@ export const msgAtencao = (logado) => {
         }
     } else {
         return dispatch => {
-            //toastr.warning("Atenção", "Você precisa estár autenticado!");
-            dispatch({ type: 'TOKEN_VALIDATED', payload: false });
+          // toastr.warning("Atenção", "Você precisa estár autenticado!");
+            dispatch({ type: 'TOKEN_TENTATIVA', payload: false });
         }
     }
 
